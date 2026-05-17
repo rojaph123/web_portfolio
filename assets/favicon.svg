@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <rect width="128" height="128" rx="24" fill="#0a0e27"/>
+  <rect x="8" y="8" width="112" height="112" rx="20" fill="none" stroke="#1e88e5" stroke-width="4"/>
+  <text x="64" y="51" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#00d4ff">&lt;/&gt;</text>
+  <text x="64" y="86" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="26" font-weight="800" fill="#ff6b35">RJO</text>
+</svg>
