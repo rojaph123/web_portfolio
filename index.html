@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rov Japheth G. Oracion - IT Professional Portfolio</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    
+    <!-- Bootstrap 5 CSS Framework -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Open Graph Meta Tags for Social Sharing -->
+    <meta property="og:title" content="Rov Japheth G. Oracion - IT Professional Portfolio">
+    <meta property="og:description" content="IT Instructor, Software Developer, and AI & ML Enthusiast from Philippines">
+    <meta property="og:image" content="assets/photo.jpg">
+    <meta property="og:type" content="website">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="background-container">
+        <canvas id="animationCanvas"></canvas>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo"><span class="logo-bracket">&lt;/&gt;</span> RJO</div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#education" class="nav-link">Education</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#student-works" class="nav-link">Supervised Works</a></li>
+                <li><a href="#certificates" class="nav-link">Certificates</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="assets/resume.pdf" target="_blank" class="nav-link"><i class="fas fa-file-pdf"></i> Resume</a></li>
+                <li><a href="admin.html" class="nav-link" title="Admin Dashboard"><i class="fas fa-cog"></i> Admin</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-wrapper">
+            <div class="hero-content">
+                <h1 class="hero-title">Rov Japheth G. Oracion</h1>
+                <p class="hero-subtitle">IT Instructor | Software Developer | AI & ML Enthusiast</p>
+                <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                    <a href="#contact" class="cta-button">Get In Touch</a>
+                    <a href="assets/resume.pdf" download class="cta-button" style="background: linear-gradient(135deg, #0066cc, #004499); border: 2px solid #1e88e5;">
+                        <i class="fas fa-download"></i> Download Resume
+                    </a>
+                </div>
+            </div>
+            <div class="hero-photo-container">
+                <div class="photo-frame">
+                    <img src="assets/photo.jpg" alt="Rov Japheth G. Oracion" class="profile-photo">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <p>
+                    I'm an IT Instructor and Software Developer with a passion for education and technology innovation. 
+                    With a Bachelor's degree in Information Technology from Bukidnon State University and currently pursuing a Master's in IT, 
+                    I combine academic expertise with practical development experience. My focus is on creating impactful software solutions 
+                    and fostering the next generation of IT professionals.
+                </p>
+                <p>
+                    My technical expertise spans programming languages (Python, Java, JavaScript), artificial intelligence and machine learning, 
+                    database design and management, and software development lifecycle. I'm passionate about mentoring students, contributing to open-source projects, 
+                    and continuously exploring emerging technologies in AI and modern development frameworks.
+                </p>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <i class="fas fa-brain"></i>
+                        <h3>AI & Machine Learning</h3>
+                        <p>Neural networks, deep learning, and predictive models</p>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fas fa-database"></i>
+                        <h3>Database Management</h3>
+                        <p>SQL, NoSQL, database design, and optimization</p>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fas fa-code"></i>
+                        <h3>Software Development</h3>
+                        <p>Full-stack development with modern programming languages</p>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fas fa-chalkboard-user"></i>
+                        <h3>Education & Mentoring</h3>
+                        <p>Teaching IT courses and guiding aspiring developers</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="section">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="education-timeline" id="educationTimeline">
+                <!-- Loaded from Firestore Admin -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section">
+        <div class="container">
+            <h2 class="section-title">Work Experience</h2>
+            <div class="experience-cards" id="experienceCards">
+                <!-- Loaded from Firestore Admin -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Projects from Admin -->
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div id="dynamicProjects" class="projects-grid">
+                <!-- Loaded from Firestore Admin - Starred/Featured projects only -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Supervised Student Works Showcase -->
+    <section id="student-works" class="section">
+        <div class="container">
+            <h2 class="section-title">Supervised Student Works</h2>
+            <p class="student-works-intro">
+                Selected landing pages and application showcases developed by students through academic coursework, guided practice, and applied software development activities.
+            </p>
+            <div id="studentWorksList" class="student-works-grid">
+                <!-- Loaded from assets/landing pages.xlsx via student-works-data.js -->
+            </div>
+        </div>
+    </section>
+    
+    <!-- Skills Section (from Admin) -->
+    <section id="skills" class="section">
+        <div class="container">
+            <h2 class="section-title">Skills</h2>
+            <div id="skillsList" class="skills-grid">
+                <!-- Loaded from Firestore Admin -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificates Section (from Admin) -->
+    <section id="certificates" class="section">
+        <div class="container">
+            <h2 class="section-title">Certifications & Achievements</h2>
+            <div id="certificatesList" class="certificates-grid">
+                <!-- Loaded from Firestore Admin -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <p>I'm always open to new opportunities, collaborations, and interesting projects. Feel free to reach out!</p>
+                <div class="contact-links">
+                    <a href="https://mail.google.com" target="_blank" class="contact-card contact-link-gmail">
+                        <i class="fab fa-google"></i>
+                        <span>GMAIL</span>
+                    </a>
+                    <a href="tel:+639556245890" class="contact-card contact-link-phone">
+                        <i class="fas fa-phone"></i>
+                        <span>+63 955 624 5890</span>
+                    </a>
+                    <a href="https://github.com/rojaph123" target="_blank" class="contact-card contact-link-github">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="https://www.facebook.com/rovjapeth.oracion/" target="_blank" class="contact-card contact-link-facebook">
+                        <i class="fab fa-facebook"></i>
+                        <span>Facebook</span>
+                    </a>
+                    <a href="https://www.instagram.com/rojaph_yu/" target="_blank" class="contact-card contact-link-instagram">
+                        <i class="fab fa-instagram"></i>
+                        <span>Instagram</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Contact Form Section -->
+    <section class="professional-contact-section">
+        <div class="container">
+            <div class="contact-form-wrapper">
+                <div class="code-header">
+                    <span class="code-bracket">&lt;</span><span class="code-tag">form</span><span class="code-bracket">&gt;</span>
+                </div>
+                <h2 class="form-title">Industry Professional Inquiries</h2>
+                <p class="form-subtitle">Send your concerns, project proposals, or collaboration inquiries</p>
+                
+                <form id="contactForm" class="contact-form">
+                    <div class="form-group">
+                        <label for="name" class="form-label">Full Name</label>
+                        <input type="text" id="name" name="name" class="form-input" placeholder="Enter your name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input type="email" id="email" name="email" class="form-input" placeholder="your@email.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="company" class="form-label">Company / Organization</label>
+                        <input type="text" id="company" name="company" class="form-input" placeholder="Your company name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject" class="form-label">Subject</label>
+                        <select id="subject" name="subject" class="form-input" required>
+                            <option value="">Select inquiry type</option>
+                            <option value="collaboration">Collaboration Opportunity</option>
+                            <option value="project">Project Proposal</option>
+                            <option value="freelance">Freelance Work</option>
+                            <option value="consultation">Technical Consultation</option>
+                            <option value="mentoring">Mentoring / Teaching Opportunity</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message" class="form-label">Message</label>
+                        <textarea id="message" name="message" class="form-textarea" placeholder="Please describe your inquiry in detail..." rows="6" required></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn-submit">
+                            <span class="btn-text">Send Message</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                        <button type="reset" class="btn-reset">
+                            <span class="btn-text">Clear</span>
+                            <i class="fas fa-redo"></i>
+                        </button>
+                    </div>
+                </form>
+
+                <div id="formMessage" class="form-message"></div>
+
+                <div class="code-footer">
+                    <span class="code-bracket">&lt;/</span><span class="code-tag">form</span><span class="code-bracket">&gt;</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Rov Japheth G. Oracion. All rights reserved. | <a href="#home">Back to Top</a></p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JavaScript Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Firebase Libraries -->
+    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore-compat.js"></script>
+    
+    <!-- Firebase Integration -->
+    <script src="assets/certs-data.js"></script>
+    <script src="assets/student-works-data.js"></script>
+    <script src="firebase-integration.js"></script>
+    
+    <!-- Custom Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>

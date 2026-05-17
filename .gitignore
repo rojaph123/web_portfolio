@@ -1,0 +1,45 @@
+# System Files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# IDE Files
+.vscode
+.idea
+*.sublime-project
+*.sublime-workspace
+
+# Node Modules (if using any)
+node_modules/
+package-lock.json
+
+# Temporary Files
+*.tmp
+*.bak
+*~
+.temp/
+
+# Local Environment
+.env
+.env.local
+.env.*.local
+
+# Build Output
+dist/
+build/
+*.zip
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# OS Generated Files
+.AppleDouble
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db

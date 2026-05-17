@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Rov Japheth G. Oracion</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Light mode and dark mode support */
+        @media (prefers-color-scheme: light) {
+            body {
+                background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+                color: #1a1a1a;
+            }
+            .login-box {
+                background: rgba(255, 255, 255, 0.85);
+                border: 1.5px solid rgba(30, 136, 229, 0.3);
+            }
+            .login-box h2 {
+                color: #1e88e5;
+            }
+            .form-control {
+                background: rgba(255, 255, 255, 0.9);
+                border: 1px solid rgba(30, 136, 229, 0.3);
+                color: #1a1a1a;
+            }
+            .form-control:focus {
+                background: rgba(30, 136, 229, 0.08);
+                border-color: #1e88e5;
+                color: #1a1a1a;
+            }
+            .form-card {
+                background: rgba(255, 255, 255, 0.9);
+                border: 1.5px solid rgba(30, 136, 229, 0.3);
+            }
+            .nav-top {
+                background: rgba(255, 255, 255, 0.95);
+                border-bottom: 2px solid #1e88e5;
+            }
+            .item-list {
+                background: rgba(240, 240, 240, 0.8);
+            }
+            .item-list-item {
+                background: rgba(255, 255, 255, 0.95);
+                border: 1px solid rgba(30, 136, 229, 0.2);
+            }
+        }
+
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: linear-gradient(135deg, #0a0e27, #1a2a4e);
+                color: #e8eef7;
+            }
+            .login-box {
+                background: rgba(30, 136, 229, 0.1);
+                border: 1.5px solid rgba(30, 136, 229, 0.4);
+            }
+            .login-box h2 {
+                color: #1e88e5;
+            }
+            .form-control {
+                background: rgba(15, 23, 42, 0.6);
+                border: 1px solid rgba(30, 136, 229, 0.4);
+                color: #e8eef7;
+            }
+            .form-control:focus {
+                background: rgba(30, 136, 229, 0.15);
+                border-color: #1e88e5;
+                color: #e8eef7;
+            }
+            .form-card {
+                background: rgba(30, 136, 229, 0.1);
+                border: 1.5px solid rgba(30, 136, 229, 0.4);
+            }
+            .nav-top {
+                background: rgba(15, 23, 42, 0.95);
+                border-bottom: 2px solid #1e88e5;
+            }
+            .item-list {
+                background: rgba(15, 23, 42, 0.6);
+            }
+            .item-list-item {
+                background: rgba(30, 51, 90, 0.6);
+                border: 1px solid rgba(30, 136, 229, 0.2);
+            }
+        }
+
+        /* Default dark theme as fallback */
+        body {
+            background: linear-gradient(135deg, #0a0e27, #1a2a4e);
+            color: #e8eef7;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .admin-container {
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .login-box {
+            max-width: 400px;
+            margin: 100px auto;
+            background: rgba(30, 136, 229, 0.1);
+            border: 1.5px solid rgba(30, 136, 229, 0.4);
+            border-radius: 16px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 60px rgba(30, 136, 229, 0.25);
+            position: relative;
+        }
+        .back-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 107, 53, 0.8);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        .back-btn:hover {
+            background: #ff6b35;
+            transform: scale(1.1);
+        }
+        .login-box h2 {
+            text-align: center;
+            color: #1e88e5;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+        .form-control {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(30, 136, 229, 0.4);
+            color: #e8eef7;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .form-control:focus {
+            background: rgba(30, 136, 229, 0.15);
+            border-color: #1e88e5;
+            color: #e8eef7;
+            box-shadow: 0 0 20px rgba(30, 136, 229, 0.4);
+        }
+        .btn-login {
+            width: 100%;
+            background: linear-gradient(135deg, #1e88e5, #0066cc);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(30, 136, 229, 0.5);
+        }
+        .dashboard {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .nav-top {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 51, 90, 0.8));
+            border-bottom: 2px solid #1e88e5;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(30, 136, 229, 0.2);
+        }
+        .nav-top h1 {
+            color: #1e88e5;
+            margin: 0;
+            font-size: 24px;
+        }
+        .btn-logout {
+            background: #ff6b35;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .btn-logout:hover {
+            background: #ff5722;
+        }
+        .admin-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(30, 136, 229, 0.3);
+        }
+        .tab-btn {
+            background: rgba(30, 136, 229, 0.2);
+            color: #1e88e5;
+            border: 1px solid rgba(30, 136, 229, 0.4);
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .tab-btn:hover {
+            background: rgba(30, 136, 229, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(30, 136, 229, 0.3);
+        }
+        .tab-btn.active {
+            background: linear-gradient(135deg, #1e88e5, #0066cc);
+            color: white;
+            border-color: #1e88e5;
+            box-shadow: 0 4px 15px rgba(30, 136, 229, 0.5);
+        }
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .form-card {
+            background: linear-gradient(135deg, rgba(30, 136, 229, 0.12), rgba(30, 136, 229, 0.08));
+            border: 1.5px solid rgba(30, 136, 229, 0.4);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(30, 136, 229, 0.15);
+        }
+        .form-card h3 {
+            color: #1e88e5;
+            margin-bottom: 20px;
+            font-size: 18px;
+            border-bottom: 2px solid rgba(30, 136, 229, 0.3);
+            padding-bottom: 10px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            color: #1e88e5;
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .form-control, textarea.form-control, select.form-control {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(30, 136, 229, 0.4);
+            color: #e8eef7;
+            padding: 12px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        .form-control:hover, textarea.form-control:hover, select.form-control:hover {
+            border-color: rgba(30, 136, 229, 0.6);
+            background: rgba(15, 23, 42, 0.7);
+        }
+        .form-control:focus, textarea.form-control:focus, select.form-control:focus {
+            background: rgba(30, 136, 229, 0.1);
+            border-color: #1e88e5;
+            color: #e8eef7;
+            box-shadow: 0 0 20px rgba(30, 136, 229, 0.4);
+            outline: none;
+        }
+        .btn-primary-custom {
+            background: linear-gradient(135deg, #1e88e5, #0066cc);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-primary-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(30, 136, 229, 0.5);
+        }
+        .btn-danger-custom {
+            background: linear-gradient(135deg, #ff6b35, #ff5722);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-danger-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
+        }
+        .projects-list, .contacts-list, .certificates-list {
+            display: grid;
+            gap: 20px;
+        }
+        .project-item, .contact-item, .certificate-item {
+            background: linear-gradient(135deg, rgba(30, 136, 229, 0.12), rgba(30, 136, 229, 0.08));
+            border: 1px solid rgba(30, 136, 229, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            backdrop-filter: blur(8px);
+            transition: all 0.3s ease;
+        }
+        .project-item:hover, .contact-item:hover, .certificate-item:hover {
+            transform: translateY(-4px);
+            border-color: rgba(30, 136, 229, 0.5);
+            box-shadow: 0 8px 20px rgba(30, 136, 229, 0.2);
+        }
+        
+        .project-item h4, .contact-item h4, .certificate-item h4 {
+            color: #ff6b35;
+            margin-top: 0;
+        }
+        .certificate-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        .certificate-info {
+            flex: 1;
+        }
+        .certificate-info p {
+            margin: 5px 0;
+            font-size: 14px;
+            color: #e8eef7;
+        }
+        .admin-cert-category {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+            padding: 5px 10px;
+            border: 1px solid rgba(255, 107, 53, 0.35);
+            border-radius: 8px;
+            background: rgba(255, 107, 53, 0.1);
+            color: #ffb088;
+            font-size: 12px;
+            font-weight: 700;
+        }
+        .certificate-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .project-item button, .contact-item button {
+            margin-top: 15px;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+        }
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #1e88e5;
+        }
+        .alert {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .alert-success {
+            background: rgba(34, 197, 94, 0.2);
+            border: 1px solid rgba(34, 197, 94, 0.5);
+            color: #22c55e;
+        }
+        .alert-error {
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid rgba(239, 68, 68, 0.5);
+            color: #ef4444;
+        }
+        
+        /* Mobile Hamburger Menu */
+        .hamburger-menu {
+            display: none;
+            background: none;
+            border: none;
+            color: #1e88e5;
+            font-size: 24px;
+            cursor: pointer;
+            margin-right: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .hamburger-menu:hover {
+            transform: scale(1.2);
+        }
+        
+        /* Mobile Sidebar Panel */
+        .sidebar-panel {
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 280px;
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(30, 136, 229, 0.15), rgba(30, 136, 229, 0.08));
+            border-right: 2px solid rgba(30, 136, 229, 0.4);
+            padding: 20px 0;
+            overflow-y: auto;
+            z-index: 1000;
+            animation: slideInLeft 0.3s ease;
+            box-shadow: 5px 0 20px rgba(30, 136, 229, 0.2);
+        }
+        
+        .sidebar-panel.active {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .sidebar-close {
+            align-self: flex-end;
+            background: none;
+            border: none;
+            color: #1e88e5;
+            font-size: 28px;
+            cursor: pointer;
+            padding: 10px 20px;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .sidebar-close:hover {
+            transform: scale(1.2);
+        }
+        
+        .sidebar-tabs {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            padding: 0 10px;
+        }
+        
+        .sidebar-tab-btn {
+            background: rgba(30, 136, 229, 0.2);
+            color: #1e88e5;
+            border: 1px solid rgba(30, 136, 229, 0.4);
+            padding: 14px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-align: left;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .sidebar-tab-btn:hover {
+            background: rgba(30, 136, 229, 0.3);
+            transform: translateX(5px);
+            border-color: rgba(30, 136, 229, 0.6);
+        }
+        
+        .sidebar-tab-btn.active {
+            background: linear-gradient(135deg, #1e88e5, #0066cc);
+            color: white;
+            border-color: #1e88e5;
+            box-shadow: 0 4px 15px rgba(30, 136, 229, 0.5);
+        }
+        
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 900;
+        }
+        
+        .sidebar-overlay.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                transform: translateX(-100%);
+            }
+            to {
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Final admin readability and hosting polish */
+        :root {
+            --admin-bg: #081126;
+            --admin-surface: rgba(15, 23, 42, 0.92);
+            --admin-surface-2: rgba(20, 35, 62, 0.94);
+            --admin-border: rgba(96, 165, 250, 0.34);
+            --admin-text: #edf5ff;
+            --admin-muted: #a9bbd4;
+            --admin-blue: #4da3ff;
+            --admin-orange: #ff9b6a;
+        }
+
+        body {
+            background:
+                radial-gradient(circle at top left, rgba(30, 136, 229, 0.2), transparent 34%),
+                linear-gradient(135deg, #061022, #0d1b36 54%, #071225);
+            color: var(--admin-text);
+        }
+
+        .admin-container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .login-box,
+        .form-card,
+        .nav-top,
+        .project-item,
+        .contact-item,
+        .certificate-item,
+        .sidebar-panel {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(20, 35, 62, 0.9));
+            border-color: var(--admin-border);
+            color: var(--admin-text);
+        }
+
+        .login-box {
+            max-width: 430px;
+            margin: 9vh auto;
+            padding: 42px 36px 34px;
+        }
+
+        .login-box h2,
+        .nav-top h1,
+        .form-card h3,
+        .form-group label {
+            color: var(--admin-blue);
+        }
+
+        .form-card h3 {
+            font-size: 1.05rem;
+            letter-spacing: 0;
+        }
+
+        .form-control,
+        textarea.form-control,
+        select.form-control {
+            background: rgba(2, 8, 23, 0.72) !important;
+            border: 1px solid rgba(96, 165, 250, 0.38) !important;
+            color: var(--admin-text) !important;
+            caret-color: var(--admin-blue);
+        }
+
+        .form-control::placeholder,
+        textarea.form-control::placeholder {
+            color: rgba(237, 245, 255, 0.48) !important;
+        }
+
+        .form-control:focus,
+        textarea.form-control:focus,
+        select.form-control:focus {
+            background: rgba(8, 20, 42, 0.95) !important;
+            border-color: var(--admin-blue) !important;
+            color: #ffffff !important;
+            box-shadow: 0 0 0 3px rgba(77, 163, 255, 0.22) !important;
+        }
+
+        select.form-control option {
+            background: #0b152d;
+            color: var(--admin-text);
+        }
+
+        input[type="date"].form-control,
+        input[type="number"].form-control,
+        input[type="url"].form-control,
+        input[type="email"].form-control,
+        input[type="password"].form-control,
+        input[type="text"].form-control {
+            color-scheme: dark;
+        }
+
+        small,
+        .empty-state,
+        .loading,
+        .certificate-info p,
+        .project-item p,
+        .contact-item p {
+            color: var(--admin-muted) !important;
+        }
+
+        .project-item h4,
+        .contact-item h4,
+        .certificate-item h4 {
+            color: var(--admin-orange);
+            line-height: 1.35;
+        }
+
+        .project-item a,
+        .contact-item a,
+        .certificate-item a {
+            color: #7cc0ff !important;
+        }
+
+        .tab-btn,
+        .sidebar-tab-btn {
+            color: #cfe7ff;
+            background: rgba(30, 136, 229, 0.14);
+            border-color: rgba(96, 165, 250, 0.34);
+        }
+
+        .tab-btn.active,
+        .sidebar-tab-btn.active,
+        .btn-primary-custom,
+        .btn-login {
+            color: #ffffff !important;
+            background: linear-gradient(135deg, #1e88e5, #005bbb);
+        }
+
+        .btn-primary-custom,
+        .btn-danger-custom,
+        .btn-login,
+        .btn-logout {
+            border-radius: 8px;
+            min-height: 40px;
+        }
+
+        .btn-primary-custom:focus,
+        .btn-danger-custom:focus,
+        .btn-login:focus,
+        .btn-logout:focus,
+        .tab-btn:focus,
+        .sidebar-tab-btn:focus {
+            outline: 3px solid rgba(77, 163, 255, 0.35);
+            outline-offset: 2px;
+        }
+
+        .alert-success {
+            color: #9ff5bd;
+            background: rgba(34, 197, 94, 0.16);
+        }
+
+        .alert-error {
+            color: #fecaca;
+            background: rgba(239, 68, 68, 0.16);
+        }
+
+        @media (max-width: 768px) {
+            .admin-container {
+                padding: 14px;
+            }
+
+            .login-box {
+                margin: 8vh auto;
+                padding: 36px 22px 26px;
+            }
+
+            .nav-top {
+                align-items: center;
+                gap: 12px;
+            }
+
+            .admin-tabs {
+                gap: 8px;
+            }
+
+            .tab-btn {
+                padding: 10px 14px;
+                font-size: 0.88rem;
+            }
+
+            .certificate-item {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Login Section -->
+        <div id="loginSection" class="login-box">
+            <button class="back-btn" onclick="window.location.href='index.html'" title="Back to Portfolio">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <h2><i class="fas fa-lock"></i> Admin Login</h2>
+            <div id="loginMessage"></div>
+            <div class="form-group">
+                <input type="email" id="loginEmail" class="form-control" placeholder="Enter email" required>
+            </div>
+            <div class="form-group">
+                <input type="password" id="loginPassword" class="form-control" placeholder="Enter password" required>
+            </div>
+            <button class="btn-login" onclick="adminLogin()">Login</button>
+
+        </div>
+
+
+
+        <!-- Dashboard Section -->
+        <div id="dashboardSection" class="dashboard">
+            <!-- Mobile Sidebar Overlay -->
+            <div id="sidebarOverlay" class="sidebar-overlay" onclick="toggleSidebar()"></div>
+            
+            <!-- Mobile Sidebar Panel -->
+            <div id="sidebarPanel" class="sidebar-panel">
+                <button class="sidebar-close" onclick="toggleSidebar()" title="Close menu">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="sidebar-tabs">
+                    <button class="sidebar-tab-btn" onclick="switchTab('profile'); toggleSidebar();">
+                        <i class="fas fa-user-circle"></i> Profile
+                    </button>
+                    <button class="sidebar-tab-btn active" onclick="switchTab('about'); toggleSidebar();">
+                        <i class="fas fa-info-circle"></i> About Me
+                    </button>
+                    <button class="sidebar-tab-btn" onclick="switchTab('education'); toggleSidebar();">
+                        <i class="fas fa-graduation-cap"></i> Education
+                    </button>
+                    <button class="sidebar-tab-btn" onclick="switchTab('experience'); toggleSidebar();">
+                        <i class="fas fa-briefcase"></i> Experience
+                    </button>
+                    <button class="sidebar-tab-btn" onclick="switchTab('skills'); toggleSidebar();">
+                        <i class="fas fa-star"></i> Skills
+                    </button>
+                    <button class="sidebar-tab-btn" onclick="switchTab('projects'); toggleSidebar();">
+                        <i class="fas fa-project-diagram"></i> Projects
+                    </button>
+                    <button class="sidebar-tab-btn" onclick="switchTab('studentWorks'); toggleSidebar();">
+                        <i class="fas fa-user-graduate"></i> Supervised Works
+                    </button>
+                    <button class="sidebar-tab-btn" onclick="switchTab('certificates'); toggleSidebar();">
+                        <i class="fas fa-certificate"></i> Certificates
+                    </button>
+                    <button class="sidebar-tab-btn" onclick="switchTab('contacts'); toggleSidebar();">
+                        <i class="fas fa-envelope"></i> Contacts
+                    </button>
+                </div>
+            </div>
+            
+            <div class="nav-top">
+                <button class="hamburger-menu" id="hamburgerBtn" onclick="toggleSidebar()" title="Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1><i class="fas fa-tachometer-alt"></i> Admin Dashboard</h1>
+                <button class="btn-logout" onclick="adminLogout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            </div>
+
+            <div id="alertMessage"></div>
+
+            <div class="admin-tabs">
+                <button class="tab-btn" onclick="switchTab('profile')">
+                    <i class="fas fa-user-circle"></i> Profile
+                </button>
+                <button class="tab-btn active" onclick="switchTab('about')">
+                    <i class="fas fa-info-circle"></i> About Me
+                </button>
+                <button class="tab-btn" onclick="switchTab('education')">
+                    <i class="fas fa-graduation-cap"></i> Education
+                </button>
+                <button class="tab-btn" onclick="switchTab('experience')">
+                    <i class="fas fa-briefcase"></i> Experience
+                </button>
+                <button class="tab-btn" onclick="switchTab('skills')">
+                    <i class="fas fa-star"></i> Skills
+                </button>
+                <button class="tab-btn" onclick="switchTab('projects')">
+                    <i class="fas fa-project-diagram"></i> Projects
+                </button>
+                <button class="tab-btn" onclick="switchTab('studentWorks')">
+                    <i class="fas fa-user-graduate"></i> Supervised Works
+                </button>
+                <button class="tab-btn" onclick="switchTab('certificates')">
+                    <i class="fas fa-certificate"></i> Certificates
+                </button>
+                <button class="tab-btn" onclick="switchTab('contacts')">
+                    <i class="fas fa-envelope"></i> Contacts
+                </button>
+            </div>
+
+            <!-- Profile Tab -->
+            <div id="profile" class="tab-content">
+                <div class="form-card">
+                    <h3><i class="fas fa-user-circle"></i> Edit Profile</h3>
+                    <div class="form-group">
+                        <label>Your Name</label>
+                        <input type="text" id="profileName" class="form-control" placeholder="Full name">
+                    </div>
+                    <div class="form-group">
+                        <label>Your Title/Role</label>
+                        <input type="text" id="profileTitle" class="form-control" placeholder="e.g., IT Instructor, Software Developer">
+                    </div>
+                    <div class="form-group">
+                        <label>Profile Photo</label>
+                        <input type="file" id="profilePhoto" class="form-control" accept=".jpg,.jpeg,.png,.gif,.bmp,.webp,.svg">
+                        <small style="color: #999; display: block; margin-top: 5px;">Upload your profile photo (JPEG, JPG, PNG, etc.)</small>
+                        <div id="profilePhotoPreview" style="margin-top: 10px;">
+                            <img id="profilePhotoPreviewImg" style="max-width: 150px; max-height: 150px; border-radius: 50%; display: none; object-fit: cover;">
+                        </div>
+                    </div>
+                    <button class="btn-primary-custom" onclick="saveProfile()">
+                        <i class="fas fa-save"></i> Save Profile
+                    </button>
+                </div>
+            </div>
+
+            <!-- About Tab -->
+            <div id="about" class="tab-content active">
+                <div class="form-card">
+                    <h3><i class="fas fa-pen-to-square"></i> Edit About Section</h3>
+                    <div class="form-group">
+                        <label>About/Bio (displayed on portfolio)</label>
+                        <textarea id="aboutText" class="form-control" rows="6" placeholder="Write your about section..."></textarea>
+                    </div>
+                    <button class="btn-primary-custom" onclick="saveAbout()">
+                        <i class="fas fa-save"></i> Save About
+                    </button>
+                </div>
+            </div>
+
+            <!-- Education Tab -->
+            <div id="education" class="tab-content">
+                <div class="form-card">
+                    <h3><i class="fas fa-plus"></i> Add Education</h3>
+                    <div class="form-group">
+                        <label>Degree/Program</label>
+                        <input type="text" id="eduDegree" class="form-control" placeholder="e.g., Bachelor of Science in Information Technology">
+                    </div>
+                    <div class="form-group">
+                        <label>Institution</label>
+                        <input type="text" id="eduInstitution" class="form-control" placeholder="e.g., Bukidnon State University">
+                    </div>
+                    <div class="form-group">
+                        <label>Period (e.g., 2018 - 2022)</label>
+                        <input type="text" id="eduPeriod" class="form-control" placeholder="Start - End year">
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea id="eduDescription" class="form-control" rows="3" placeholder="Brief description..."></textarea>
+                    </div>
+                    <button class="btn-primary-custom" onclick="addEducation()">
+                        <i class="fas fa-plus"></i> Add Education
+                    </button>
+                </div>
+                <h3><i class="fas fa-list"></i> Your Education</h3>
+                <div id="educationList" class="projects-list"></div>
+            </div>
+
+            <!-- Experience Tab -->
+            <div id="experience" class="tab-content">
+                <div class="form-card">
+                    <h3><i class="fas fa-plus"></i> Add Work Experience</h3>
+                    <div class="form-group">
+                        <label>Position/Title</label>
+                        <input type="text" id="expPosition" class="form-control" placeholder="e.g., IT Instructor">
+                    </div>
+                    <div class="form-group">
+                        <label>Company</label>
+                        <input type="text" id="expCompany" class="form-control" placeholder="e.g., Bukidnon State University">
+                    </div>
+                    <div class="form-group">
+                        <label>Period (e.g., 2024 - Present)</label>
+                        <input type="text" id="expPeriod" class="form-control" placeholder="Start - End year">
+                    </div>
+                    <div class="form-group">
+                        <label>Responsibilities (one per line)</label>
+                        <textarea id="expDuties" class="form-control" rows="4" placeholder="Line 1: First responsibility&#10;Line 2: Second responsibility"></textarea>
+                    </div>
+                    <button class="btn-primary-custom" onclick="addExperience()">
+                        <i class="fas fa-plus"></i> Add Experience
+                    </button>
+                </div>
+                <h3><i class="fas fa-list"></i> Your Experience</h3>
+                <div id="experienceList" class="projects-list"></div>
+            </div>
+
+            <!-- Skills Tab -->
+            <div id="skills" class="tab-content">
+                <div class="form-card">
+                    <h3><i class="fas fa-star"></i> Manage Skills</h3>
+                    <div class="form-group">
+                        <label>Add New Skill</label>
+                        <input type="text" id="newSkill" class="form-control" placeholder="e.g., Python, Machine Learning, JavaScript">
+                    </div>
+                    <div class="form-group">
+                        <label>Select Icon</label>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(60px, 1fr)); gap: 10px; margin-bottom: 15px; max-height: 250px; overflow-y: auto; padding: 10px; background: rgba(30, 136, 229, 0.05); border-radius: 8px;">
+                            <i class="fas fa-python" onclick="selectSkillIcon(this, 'fas fa-python')" style="font-size: 24px; cursor: pointer; padding: 10px; border-radius: 6px; text-align: center; transition: all 0.3s; background: rgba(30, 136, 229, 0.1);" title="Python"></i>
+                            <i class="fab fa-js-square" onclick="selectSkillIcon(this, 'fab fa-js-square')" style="font-size: 24px; cursor: pointer; padding: 10px; border-radius: 6px; text-align: center; transition: all 0.3s;" title="JavaScript"></i>
+                            <i class="fab fa-react" onclick="selectSkillIcon(this, 'fab fa-react')" style="font-size: 24px; cursor: pointer; padding: 10px; border-radius: 6px; text-align: center; transition: all 0.3s;" title="React"></i>
+                            <i class="fab fa-node" onclick="selectSkillIcon(this, 'fab fa-node')" style="font-size: 24px; cursor: pointer; padding: 10px; border-radius: 6px; text-align: center; transition: all 0.3s;" title="Node.js"></i>
+                            <i class="fas fa-database" onclick="selectSkillIcon(this, 'fas fa-database')" style="font-size: 24px; cursor: pointer; padding: 10px; border-radius: 6px; text-align: center; transition: all 0.3s;" title="Database"></i>
+                            <i class="fas fa-code" onclick="selectSkillIcon(this, 'fas fa-code')" style="font-size: 24px; cursor: pointer; padding: 10px; border-radius: 6px; text-align: center; transition: all 0.3s;" title="Code"></i>
+                            <i class="fas fa-brain" onclick="selectSkillIcon(this, 'fas fa-brain')" style="font-size: 24px; cursor: pointer; padding: 10px; border-radius: 6px; text-align: center; transition: all 0.3s;" title="AI/ML"></i>
+                            <i class="fas fa-robot" onclick="selectSkillIcon(this, 'fas fa-robot')" style="font-size: 24px; cursor: pointer; padding: 10px; border-radius: 6px; text-align: center; transition: all 0.3s;" title="Automation"></i>
+                            <i class="fas fa-flask" onclick="selectSkillIcon(this, 'fas fa-flask')" style="font-size: 24px; cursor: pointer; padding: 10px; border-radius: 6px; text-align: center; transition: all 0.3s;" title="Testing"></i>
+                            <i class="fas fa-server" onclick="selectSkillIcon(this, 'fas fa-server')" style="font-size: 24px; cursor: pointer; padding: 10px; border-radius: 6px; text-align: center; transition: all 0.3s;" title="Server"></i>
+                            <i class="fas fa-cloud" onclick="selectSkillIcon(this, 'fas fa-cloud')" style="font-size: 24px; cursor: pointer; padding: 10px; border-radius: 6px; text-align: center; transition: all 0.3s;" title="Cloud"></i>
+                            <i class="fab fa-aws" onclick="selectSkillIcon(this, 'fab fa-aws')" style="font-size: 24px; cursor: pointer; padding: 10px; border-radius: 6px; text-align: center; transition: all 0.3s;" title="AWS"></i>
+                            <i class="fas fa-docker" onclick="selectSkillIcon(this, 'fab fa-docker')" style="font-size: 24px; cursor: pointer; padding: 10px; border-radius: 6px; text-align: center; transition: all 0.3s;" title="Docker"></i>
+                            <i class="fas fa-git" onclick="selectSkillIcon(this, 'fab fa-git')" style="font-size: 24px; cursor: pointer; padding: 10px; border-radius: 6px; text-align: center; transition: all 0.3s;" title="Git"></i>
+                            <i class="fas fa-mobile" onclick="selectSkillIcon(this, 'fas fa-mobile')" style="font-size: 24px; cursor: pointer; padding: 10px; border-radius: 6px; text-align: center; transition: all 0.3s;" title="Mobile"></i>
+                            <i class="fab fa-android" onclick="selectSkillIcon(this, 'fab fa-android')" style="font-size: 24px; cursor: pointer; padding: 10px; border-radius: 6px; text-align: center; transition: all 0.3s;" title="Android"></i>
+                            <i class="fab fa-windows" onclick="selectSkillIcon(this, 'fab fa-windows')" style="font-size: 24px; cursor: pointer; padding: 10px; border-radius: 6px; text-align: center; transition: all 0.3s;" title="Windows"></i>
+                            <i class="fab fa-linux" onclick="selectSkillIcon(this, 'fab fa-linux')" style="font-size: 24px; cursor: pointer; padding: 10px; border-radius: 6px; text-align: center; transition: all 0.3s;" title="Linux"></i>
+                            <i class="fas fa-shield-alt" onclick="selectSkillIcon(this, 'fas fa-shield-alt')" style="font-size: 24px; cursor: pointer; padding: 10px; border-radius: 6px; text-align: center; transition: all 0.3s;" title="Security"></i>
+                            <i class="fas fa-network-wired" onclick="selectSkillIcon(this, 'fas fa-network-wired')" style="font-size: 24px; cursor: pointer; padding: 10px; border-radius: 6px; text-align: center; transition: all 0.3s;" title="Networking"></i>
+                            <i class="fas fa-tools" onclick="selectSkillIcon(this, 'fas fa-tools')" style="font-size: 24px; cursor: pointer; padding: 10px; border-radius: 6px; text-align: center; transition: all 0.3s;" title="DevOps"></i>
+                            <i class="fas fa-chart-line" onclick="selectSkillIcon(this, 'fas fa-chart-line')" style="font-size: 24px; cursor: pointer; padding: 10px; border-radius: 6px; text-align: center; transition: all 0.3s;" title="Analytics"></i>
+                            <i class="fas fa-terminal" onclick="selectSkillIcon(this, 'fas fa-terminal')" style="font-size: 24px; cursor: pointer; padding: 10px; border-radius: 6px; text-align: center; transition: all 0.3s;" title="CLI"></i>
+                            <i class="fas fa-graduation-cap" onclick="selectSkillIcon(this, 'fas fa-graduation-cap')" style="font-size: 24px; cursor: pointer; padding: 10px; border-radius: 6px; text-align: center; transition: all 0.3s;" title="Education"></i>
+                        </div>
+                        <small style="color: #999; display: block;">Selected: <span id="skillIconPreview"><i class="fas fa-code"></i></span></small>
+                        <input type="hidden" id="skillIcon" value="fas fa-code">
+                    </div>
+                    <button class="btn-primary-custom" onclick="addSkill()">
+                        <i class="fas fa-plus"></i> Add Skill
+                    </button>
+                </div>
+                <h3><i class="fas fa-list"></i> Your Skills</h3>
+                <div id="skillsList" class="projects-list"></div>
+            </div>
+
+            <!-- Projects Tab -->
+            <div id="projects" class="tab-content">
+                <div class="form-card">
+                    <h3><i class="fas fa-plus"></i> Add New Project</h3>
+                    <div class="form-group">
+                        <label>Project Title</label>
+                        <input type="text" id="projectTitle" class="form-control" placeholder="e.g., AI Classification Model">
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea id="projectDesc" class="form-control" rows="3" placeholder="Project description..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Project Link/URL</label>
+                        <input type="url" id="projectLink" class="form-control" placeholder="https://github.com/...">
+                    </div>
+                    <div class="form-group">
+                        <label>Tags (comma separated)</label>
+                        <input type="text" id="projectTags" class="form-control" placeholder="Python, Machine Learning, AI">
+                    </div>
+                    <div class="form-group">
+                        <label>Project Image</label>
+                        <input type="file" id="projectImage" class="form-control" accept=".jpg,.jpeg,.png,.gif,.bmp,.webp,.svg">
+                        <small style="color: #999; display: block; margin-top: 5px;">Upload an image (JPEG, JPG, PNG, GIF, BMP, WebP, SVG, etc.)</small>
+                        <div id="projectImagePreview" style="margin-top: 10px;">
+                            <img id="projectImagePreviewImg" style="max-width: 200px; max-height: 200px; border-radius: 8px; display: none;">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Project Icon</label>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(60px, 1fr)); gap: 10px; margin-bottom: 15px; max-height: 250px; overflow-y: auto; padding: 10px; background: rgba(30, 136, 229, 0.05); border-radius: 8px;">
+                            <i class="fas fa-laptop-code" onclick="selectProjectIcon(this, 'fas fa-laptop-code')" style="font-size: 24px; cursor: pointer; padding: 10px; border-radius: 6px; text-align: center; transition: all 0.3s;" title="Web App"></i>
+                            <i class="fas fa-brain" onclick="selectProjectIcon(this, 'fas fa-brain')" style="font-size: 24px; cursor: pointer; padding: 10px; border-radius: 6px; text-align: center; transition: all 0.3s;" title="AI/ML"></i>
+                            <i class="fas fa-database" onclick="selectProjectIcon(this, 'fas fa-database')" style="font-size: 24px; cursor: pointer; padding: 10px; border-radius: 6px; text-align: center; transition: all 0.3s;" title="Database"></i>
+                            <i class="fas fa-mobile" onclick="selectProjectIcon(this, 'fas fa-mobile')" style="font-size: 24px; cursor: pointer; padding: 10px; border-radius: 6px; text-align: center; transition: all 0.3s;" title="Mobile App"></i>
+                            <i class="fas fa-server" onclick="selectProjectIcon(this, 'fas fa-server')" style="font-size: 24px; cursor: pointer; padding: 10px; border-radius: 6px; text-align: center; transition: all 0.3s;" title="Server"></i>
+                            <i class="fas fa-cloud" onclick="selectProjectIcon(this, 'fas fa-cloud')" style="font-size: 24px; cursor: pointer; padding: 10px; border-radius: 6px; text-align: center; transition: all 0.3s;" title="Cloud"></i>
+                            <i class="fas fa-shield" onclick="selectProjectIcon(this, 'fas fa-shield')" style="font-size: 24px; cursor: pointer; padding: 10px; border-radius: 6px; text-align: center; transition: all 0.3s;" title="Security"></i>
+                            <i class="fas fa-cogs" onclick="selectProjectIcon(this, 'fas fa-cogs')" style="font-size: 24px; cursor: pointer; padding: 10px; border-radius: 6px; text-align: center; transition: all 0.3s;" title="Backend"></i>
+                            <i class="fas fa-palette" onclick="selectProjectIcon(this, 'fas fa-palette')" style="font-size: 24px; cursor: pointer; padding: 10px; border-radius: 6px; text-align: center; transition: all 0.3s;" title="Design"></i>
+                            <i class="fas fa-chart-line" onclick="selectProjectIcon(this, 'fas fa-chart-line')" style="font-size: 24px; cursor: pointer; padding: 10px; border-radius: 6px; text-align: center; transition: all 0.3s;" title="Analytics"></i>
+                            <i class="fas fa-robot" onclick="selectProjectIcon(this, 'fas fa-robot')" style="font-size: 24px; cursor: pointer; padding: 10px; border-radius: 6px; text-align: center; transition: all 0.3s;" title="Automation"></i>
+                            <i class="fas fa-cog" onclick="selectProjectIcon(this, 'fas fa-cog')" style="font-size: 24px; cursor: pointer; padding: 10px; border-radius: 6px; text-align: center; transition: all 0.3s;" title="DevOps"></i>
+                            <i class="fas fa-flask" onclick="selectProjectIcon(this, 'fas fa-flask')" style="font-size: 24px; cursor: pointer; padding: 10px; border-radius: 6px; text-align: center; transition: all 0.3s;" title="Testing"></i>
+                            <i class="fab fa-docker" onclick="selectProjectIcon(this, 'fab fa-docker')" style="font-size: 24px; cursor: pointer; padding: 10px; border-radius: 6px; text-align: center; transition: all 0.3s;" title="Docker"></i>
+                            <i class="fab fa-aws" onclick="selectProjectIcon(this, 'fab fa-aws')" style="font-size: 24px; cursor: pointer; padding: 10px; border-radius: 6px; text-align: center; transition: all 0.3s;" title="AWS"></i>
+                        </div>
+                        <small style="color: #999; display: block;">Selected: <span id="projectIconPreview"><i class="fas fa-laptop-code"></i></span></small>
+                        <input type="hidden" id="projectIcon" value="fas fa-laptop-code">
+                    </div>
+                    <div class="form-group">
+                        <label style="display: flex; align-items: center; gap: 10px; font-weight: 600;">
+                            <input type="checkbox" id="projectFeatured" style="width: auto;">
+                            <span><i class="fas fa-star"></i> Mark as Featured Project</span>
+                        </label>
+                        <small style="color: #999; display: block; margin-top: 5px;">Featured projects appear on your portfolio homepage</small>
+                    </div>
+                    <button class="btn-primary-custom" onclick="addProject()">
+                        <i class="fas fa-plus"></i> Add Project
+                    </button>
+                </div>
+
+                <h3><i class="fas fa-list"></i> Your Projects</h3>
+                <div id="projectsList" class="projects-list">
+                    <div class="empty-state">
+                        <p><i class="fas fa-inbox"></i> No projects yet. Add one above!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Supervised Works Tab -->
+            <div id="studentWorks" class="tab-content">
+                <div class="form-card">
+                    <h3><i class="fas fa-plus"></i> Add Supervised Student Work</h3>
+                    <div class="form-group">
+                        <label>App / Landing Page Name</label>
+                        <input type="text" id="studentWorkName" class="form-control" placeholder="e.g., QueueCare">
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea id="studentWorkDescription" class="form-control" rows="3" placeholder="Short description of the student output..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Live Link</label>
+                        <input type="url" id="studentWorkLink" class="form-control" placeholder="https://...">
+                    </div>
+                    <div class="form-group">
+                        <label>Category</label>
+                        <input type="text" id="studentWorkCategory" class="form-control" placeholder="e.g., Campus Services, Business Landing Pages">
+                    </div>
+                    <button class="btn-primary-custom" onclick="addStudentWork()">
+                        <i class="fas fa-plus"></i> Add Supervised Work
+                    </button>
+                    <button class="btn-primary-custom" onclick="importSpreadsheetStudentWorks()" style="margin-left: 10px;">
+                        <i class="fas fa-file-import"></i> Import landing pages.xlsx
+                    </button>
+                </div>
+
+                <h3><i class="fas fa-list"></i> Supervised Works</h3>
+                <div id="studentWorksAdminList" class="projects-list">
+                    <div class="empty-state">
+                        <p><i class="fas fa-inbox"></i> No supervised works yet. Add one above or import landing pages.xlsx!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Certificates Tab -->
+            <div id="certificates" class="tab-content">
+                <div class="form-card">
+                    <h3><i class="fas fa-plus"></i> Add New Certificate</h3>
+                    <div class="form-group">
+                        <label>Certificate Name</label>
+                        <input type="text" id="certificateName" class="form-control" placeholder="e.g., AWS Solutions Architect">
+                    </div>
+                    <div class="form-group">
+                        <label>Issued By</label>
+                        <input type="text" id="certificateIssuer" class="form-control" placeholder="e.g., Amazon Web Services">
+                    </div>
+                    <div class="form-group">
+                        <label>Date Issued</label>
+                        <input type="date" id="certificateDate" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Training Hours</label>
+                        <input type="number" id="certificateHours" class="form-control" placeholder="e.g., 40" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label>Google Drive/Cloud PDF Link</label>
+                        <input type="url" id="certificatePdfUrl" class="form-control" placeholder="https://drive.google.com/file/d/... or https://storage.googleapis.com/...">
+                        <small style="color: #999; display: block; margin-top: 5px;">📁 Paste the shareable link to your PDF (Google Drive, Google Cloud Storage, or any cloud provider)</small>
+                        <small style="color: #1e88e5; display: block; margin-top: 5px;"><i class="fas fa-info-circle"></i> Make sure the link is publicly accessible or shareable</small>
+                    </div>
+                    <button class="btn-primary-custom" onclick="addCertificate()">
+                        <i class="fas fa-plus"></i> Add Certificate
+                    </button>
+                    <button class="btn-primary-custom" onclick="importSpreadsheetCertificates()" style="margin-left: 10px;">
+                        <i class="fas fa-file-import"></i> Import certs.xlsx
+                    </button>
+                </div>
+
+                <h3><i class="fas fa-list"></i> Your Certificates</h3>
+                <div id="certificatesList" class="certificates-list">
+                    <div class="empty-state">
+                        <p><i class="fas fa-inbox"></i> No certificates yet. Add one above!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contacts Tab -->
+            <div id="contacts" class="tab-content">
+                <h3><i class="fas fa-list"></i> Messages from Visitors</h3>
+                <div id="contactsList" class="contacts-list">
+                    <div class="loading">
+                        <i class="fas fa-spinner fa-spin"></i> Loading contacts...
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-storage-compat.js"></script>
+    
+    <!-- Admin Config -->
+    <script src="admin-config.js"></script>
+    <script src="assets/certs-data.js"></script>
+    <script src="assets/student-works-data.js"></script>
+    <script>
+        // Icon selection functions
+        function selectSkillIcon(element, iconClass) {
+            document.getElementById('skillIcon').value = iconClass;
+            document.getElementById('skillIconPreview').innerHTML = `<i class="${iconClass}"></i>`;
+            // Visual feedback
+            document.querySelectorAll('[onclick*="selectSkillIcon"]').forEach(el => {
+                el.style.background = 'rgba(30, 136, 229, 0.05)';
+            });
+            element.style.background = 'rgba(30, 136, 229, 0.4)';
+        }
+
+        function selectProjectIcon(element, iconClass) {
+            document.getElementById('projectIcon').value = iconClass;
+            document.getElementById('projectIconPreview').innerHTML = `<i class="${iconClass}"></i>`;
+            // Visual feedback
+            document.querySelectorAll('[onclick*="selectProjectIcon"]').forEach(el => {
+                el.style.background = 'rgba(30, 136, 229, 0.05)';
+            });
+            element.style.background = 'rgba(30, 136, 229, 0.4)';
+        }
+
+        // Image preview for projects
+        document.getElementById('projectImage')?.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    document.getElementById('projectImagePreviewImg').src = event.target.result;
+                    document.getElementById('projectImagePreviewImg').style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Image preview for profile photo
+        document.getElementById('profilePhoto')?.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    document.getElementById('profilePhotoPreviewImg').src = event.target.result;
+                    document.getElementById('profilePhotoPreviewImg').style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Mobile Sidebar Toggle Function
+        function toggleSidebar() {
+            const sidebarPanel = document.getElementById('sidebarPanel');
+            const sidebarOverlay = document.getElementById('sidebarOverlay');
+            
+            if (sidebarPanel && sidebarOverlay) {
+                sidebarPanel.classList.toggle('active');
+                sidebarOverlay.classList.toggle('active');
+            }
+        }
+
+        // Update active sidebar button when tab switches
+        function updateSidebarActiveTab(tabName) {
+            const sidebarButtons = document.querySelectorAll('.sidebar-tab-btn');
+            sidebarButtons.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent.toLowerCase().includes(tabName.toLowerCase()) || 
+                    (tabName === 'about' && btn.textContent.includes('About')) ||
+                    (tabName === 'profile' && btn.textContent.includes('Profile')) ||
+                    (tabName === 'education' && btn.textContent.includes('Education')) ||
+                    (tabName === 'experience' && btn.textContent.includes('Experience')) ||
+                    (tabName === 'skills' && btn.textContent.includes('Skills')) ||
+                    (tabName === 'projects' && btn.textContent.includes('Projects')) ||
+                    (tabName === 'studentWorks' && btn.textContent.includes('Supervised')) ||
+                    (tabName === 'certificates' && btn.textContent.includes('Certificates')) ||
+                    (tabName === 'contacts' && btn.textContent.includes('Contacts'))) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+    </script>
+    <script src="admin-app.js"></script>
+</body>
+</html>

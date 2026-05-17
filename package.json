@@ -1,0 +1,42 @@
+{
+  "name": "rov-japheth-portfolio",
+  "version": "1.0.0",
+  "description": "Professional IT Portfolio of Rov Japheth G. Oracion - IT Instructor, Software Developer, and AI & ML Enthusiast",
+  "main": "index.html",
+  "scripts": {
+    "start": "open index.html",
+    "build": "echo 'This is a static site - no build needed'",
+    "test": "echo 'Testing portfolio...'",
+    "deploy": "echo 'Deploy to GitHub Pages or Netlify'"
+  },
+  "keywords": [
+    "portfolio",
+    "it-instructor",
+    "software-developer",
+    "machine-learning",
+    "html",
+    "css",
+    "javascript",
+    "bootstrap"
+  ],
+  "author": "Rov Japheth G. Oracion",
+  "license": "MIT",
+  "frameworks": {
+    "css": "Bootstrap 5.3.0",
+    "icons": "Font Awesome 6.4.0",
+    "scripting": "Vanilla JavaScript"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.0",
+    "font-awesome": "^6.4.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rojaph123/portfolio.git"
+  },
+  "homepage": "https://github.com/rojaph123/portfolio",
+  "bugs": {
+    "url": "https://github.com/rojaph123/portfolio/issues"
+  }
+}
